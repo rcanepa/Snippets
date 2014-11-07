@@ -48,11 +48,13 @@ myBike.ring(); // ring riiiing
 myBike.honk(); // TypeError: undefined is not a function
 
 // Inheritance through Object.create() (classless example)
+/*
 Object.create = function(o){
   var F = function(){};
   F.prototype = o;
   return new F();
 };
+*/
 
 var vehicle = {};
 vehicle.drive = function(){
