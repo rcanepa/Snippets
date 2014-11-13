@@ -1,5 +1,72 @@
+/**********************
+Modules
+**********************/
 
-// Sleep function for javascript
+// Opt1
+var Module = (function () {
+	var publicVar = 'I am public!';
+	var privateVar = 'XXX';
+	return {
+		myMethod: function () {
+			console.log('myMethod has been called.');
+		},
+		exposePrivate: function(){
+			console.log('This is the value of my privateVar: '+ privateVar);
+		},
+		publicVar: publicVar
+	};
+})();
+
+Module.myMethod(); // myMethod has been called.
+
+Module.exposePrivate(); // 'This is the value of my privateVar: I am public!
+
+console.log(Module.privateVar); // undefined
+
+// Another option returning a locally scoped object
+var Module3 = (function () {
+
+	// locally scoped Object
+	var myObject = {};
+
+	// declared with `var`, must be "private"
+	var privateMethod = function () {};
+
+	myObject.someMethod = function () {
+	// take it away Mr. Public Method
+		console.log('Hi Renzo!');
+	};
+
+	return myObject;
+
+})();
+
+Module3.someMethod();
+
+// Revealing module pattern
+var Module2 = (function () {
+	var _privateMethod = function () {
+
+	};
+	var publicMethod = function () {
+		console.log('Blah');
+	};
+	var anotherPublicMethod = function () {
+		console.log('BlahBlah');
+	};
+
+	return {
+		publicMethod: publicMethod,
+		anotherPublicMethod: anotherPublicMethod
+	}
+})();
+
+Module2.publicMethod();
+
+/**********************
+Sleep function for javascript
+**********************/
+
 function sleep(miliseconds){
   var startTime = new Date().getTime();
   while (new Date().getTime() < startTime + miliseconds);
@@ -7,7 +74,9 @@ function sleep(miliseconds){
 
 sleep(1000);
 
-// ------------------------------------------------------------------- //
+/**********************
+Prototyping
+**********************/
 
 // Prototype silly example (emulating the tradition OOP inheritance)
 var Vehicle = function(){};
