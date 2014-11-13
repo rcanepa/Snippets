@@ -29,7 +29,7 @@ var Module3 = (function () {
 	// locally scoped Object
 	var myObject = {};
 
-	// declared with `var`, must be "private"
+	// declared with `var`, must be "private" 
 	var _privateMethod = function () {};
 
 	myObject.someMethod = function () {
