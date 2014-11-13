@@ -5,13 +5,13 @@ Modules
 // Opt1
 var Module = (function () {
 	var publicVar = 'I am public!';
-	var privateVar = 'XXX';
+	var _privateVar = 'XXX';
 	return {
 		myMethod: function () {
 			console.log('myMethod has been called.');
 		},
 		exposePrivate: function(){
-			console.log('This is the value of my privateVar: '+ privateVar);
+			console.log('This is the value of my privateVar: '+ _privateVar);
 		},
 		publicVar: publicVar
 	};
@@ -21,7 +21,7 @@ Module.myMethod(); // myMethod has been called.
 
 Module.exposePrivate(); // 'This is the value of my privateVar: I am public!
 
-console.log(Module.privateVar); // undefined
+console.log(Module._privateVar); // undefined
 
 // Another option returning a locally scoped object
 var Module3 = (function () {
@@ -30,7 +30,7 @@ var Module3 = (function () {
 	var myObject = {};
 
 	// declared with `var`, must be "private"
-	var privateMethod = function () {};
+	var _privateMethod = function () {};
 
 	myObject.someMethod = function () {
 	// take it away Mr. Public Method
@@ -62,6 +62,41 @@ var Module2 = (function () {
 })();
 
 Module2.publicMethod();
+
+// Extending modules
+var Module = (function () {
+
+  var _privateMethod = function () {
+    // private
+  };
+
+  var someMethod = function () {
+    // public
+  };
+
+  var anotherMethod = function () {
+    // public
+  };
+  
+  return {
+    someMethod: someMethod,
+    anotherMethod: anotherMethod
+  };
+
+})();
+
+// We pass the obj Module to the ModuleTwo function
+var ModuleTwo = (function (Module) {
+    
+    Module.extension = function () {
+        // another method!
+    };
+    
+    return Module;
+    
+})(Module || {}); // preventing problems if Module is undefined
+
+console.log(Module); // Object {someMethod: function, anotherMethod: function, extension: function}
 
 /**********************
 Sleep function for javascript
