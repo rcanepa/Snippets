@@ -26,3 +26,19 @@
   // ...
 
 })();
+
+
+// Using controllerAs sintax
+
+<div ng-controller="MainCtrl as vm">
+  {{ vm.someObject }}
+</div>
+
+...
+
+function MainCtrl () {
+  this.someObject = {}; // using 'this' instead of $scope
+  this.doSomething = function () {
+
+  };
+}
