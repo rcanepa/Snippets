@@ -180,3 +180,21 @@ Validating callbacks
 **********************/
 
 callback = (typeof callback === 'function') ? callback : function() {};
+
+/**********************
+Extending the console
+**********************/
+
+var slice = Array.prototype.slice;
+
+function logger(namespace) {
+  return function(){
+      console.log.apply(console, [namespace].concat(slice.call(arguments)));
+  }
+}
+
+module.exports = logger;
+
+var out = logger('WARN:');
+
+out('Blah!');
