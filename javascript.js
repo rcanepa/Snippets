@@ -175,5 +175,8 @@ var myCar = Object.create(car);
 myCar.honk(); // honk hoooonk
 myCar.drive(); // vroooom
 
-// ------------------------------------------------------------------- //
+/**********************
+Validating callbacks
+**********************/
 
+callback = (typeof callback === 'function') ? callback : function() {};
