@@ -105,6 +105,14 @@ var MODULE = (function (my) {
 	return my;
 }(MODULE || {}));
 
+// Creating sub-modules
+MODULE.sub = (function () {
+	var my = {};
+	// ...
+
+	return my;
+}());
+
 /**********************
 Sleep function for javascript
 **********************/
