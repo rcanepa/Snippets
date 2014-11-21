@@ -98,6 +98,13 @@ var ModuleTwo = (function (Module) {
 
 console.log(Module); // Object {someMethod: function, anotherMethod: function, extension: function}
 
+// Loose Augmentation Pattern
+var MODULE = (function (my) {
+	// add capabilities...
+
+	return my;
+}(MODULE || {}));
+
 /**********************
 Sleep function for javascript
 **********************/
