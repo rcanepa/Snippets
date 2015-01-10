@@ -213,3 +213,26 @@ module.exports = logger;
 var out = logger('WARN:');
 
 out('Blah!');
+
+/**********************
+Passing data to callbacks
+**********************/
+
+// The solution is the binding of variables through closure.
+
+var doSomething = function(extraStuff) {
+    return function(data, textStatus, jqXHR) {
+        // do something with extraStuff
+    };
+};
+
+// Example
+
+var clicked = function() {
+    var extraStuff = {
+        myParam1: 'foo',
+        myParam2: 'bar'
+    }; // an object / whatever extra params you wish to pass.
+
+    $.post("someurl.php", someData, doSomething(extraStuff), "json");
+};
